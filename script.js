@@ -4,21 +4,33 @@ function getComputerChoice() {
         'Paper',
         'Scissors'
     ]
-    let choice = Math.floor(Math.random()*3)
+    let choice = Math.floor(Math.random() * 3)
     return choiceArray[choice]
+}
+
+function getPlayerChoice() {
+    let valid = false
+    while (!valid) {
+        choice = prompt('What do you choose? Rock, Paper, or Scissors?')
+        choice = choice.toLowerCase()
+        if (choice == 'rock' || choice == 'scissors' || choice == 'paper') {
+            valid = true
+        }
+    }
+    return choice
 }
 
 function playRound(playerSelection, computerSelection) {
     player = playerSelection.toLowerCase()
     computer = computerSelection.toLowerCase()
 
-    if((player == 'rock' && computer == 'scissors') ||
+    if ((player == 'rock' && computer == 'scissors') ||
         (player == 'scissors' && computer == 'paper') ||
         (player == 'paper' && computer == 'rock')) {
-            return "You win!"
-        }
+        return "You win!"
+    }
 
-    else if(player == computer) {
+    else if (player == computer) {
         return "Draw!"
     }
 
@@ -27,6 +39,13 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-computerChoice = getComputerChoice()
-console.log("Computer: " + computerChoice)
-console.log(playRound('Rock', computerChoice))
+function game() {
+    for (let i = 0; i < 5; i++) {
+        computerChoice = getComputerChoice()
+        playerChoice = getPlayerChoice()
+        console.log("Computer: " + computerChoice)
+        console.log(playRound(playerChoice, computerChoice))
+    }
+}
+
+game()
