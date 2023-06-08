@@ -1,0 +1,20 @@
+html {
+    min-height: 100vh;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h1 {
+    flex: 1;
+    margin: 0px;
+    padding: 0px;
+    font-weight: 900;
+    font-size: 90px;
+    font-family: 'Helvetica', sans-serif;
+    text-align: center;
+}
