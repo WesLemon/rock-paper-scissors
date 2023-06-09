@@ -6,6 +6,7 @@ function getComputerChoice() {
     ]
     let choice = Math.floor(Math.random() * 3)
     const computerMessage = document.querySelector('.computer-message')
+    computerMessage.classList.add('text')
     computerMessage.textContent = 'The computer chose: ' + choiceArray[choice]
     return choiceArray[choice]
 }
@@ -57,9 +58,11 @@ function game() {
     buttons.forEach((button) => {
         button.addEventListener('click', () => {
             const playerMessage = document.querySelector('.player-message')
+            playerMessage.classList.add('text')
             playerMessage.textContent = 'You chose: ' + button.id
             result = playRound(button.id, getComputerChoice())
             const resultMessage = document.querySelector('.result-message')
+            resultMessage.classList.add('text')
             resultMessage.textContent = result
             player.textContent = playerScore
             computer.textContent = computerScore
