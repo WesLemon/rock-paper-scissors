@@ -66,7 +66,9 @@ p {
     flex: 1;
 }
 
-.text {
+.player-message,
+.result-message,
+.computer-message {
     font-weight: bold;
     font-size: 20px;
 }
