@@ -1,35 +1,79 @@
 function getComputerChoice() {
     let choiceArray = [
-        'rock',
-        'paper',
-        'scissors'
+        'Rock',
+        'Paper',
+        'Scissors'
     ]
     let choice = Math.floor(Math.random() * 3)
-    console.log('Computer chose: ' + choiceArray[choice])
+    const computerMessage = document.querySelector('.computer-message')
+    computerMessage.textContent = 'The computer chose: ' + choiceArray[choice]
     return choiceArray[choice]
 }
 
 function playRound(playerSelection, computerSelection) {
-
-    if ((playerSelection == 'rock' && computerSelection == 'scissors') ||
-        (playerSelection == 'scissors' && computerSelection == 'paper') ||
-        (playerSelection == 'paper' && computerSelection == 'rock')) {
+    if ((playerSelection == 'Rock' && computerSelection == 'Scissors') ||
+        (playerSelection == 'Scissors' && computerSelection == 'Paper') ||
+        (playerSelection == 'Paper' && computerSelection == 'Rock')) {
+        playerScore++
         return "You win!"
     }
-
     else if (playerSelection == computerSelection) {
         return "Draw!"
     }
-
     else {
+        computerScore++
         return "You lose!"
     }
 }
 
-const buttons = document.querySelectorAll('button')
-buttons.forEach((button) => {
+function endGame(result) {
+    document.open()
+    document.write('<head><meta charset="UTF-8"><title>Rock Paper Scissors</title><link rel="stylesheet" href="style.css"></head>')
+    document.write('<body></body>')
+    const message = document.createElement('h1')
+    message.textContent = result
+    message.classList.add('end')
+    const container = document.querySelector('body')
+    container.appendChild(message)
+    const button = document.createElement('button')
+    button.textContent = 'Play again?'
+    button.style.backgroundColor = 'black'
+    button.style.color = 'white'
+    button.style.border = '1px solid white'
+    button.style.padding = '5px 10px'
+    container.appendChild(button)
     button.addEventListener('click', () => {
-        console.log('You chose: ' + button.id)
-        console.log(playRound(button.id, getComputerChoice()))
+        location.reload()
     })
-})
+}
+
+function game() {
+    const player = document.querySelector('.player-score')
+    player.textContent = playerScore
+    const computer = document.querySelector('.computer-score')
+    computer.textContent = computerScore
+
+    const buttons = document.querySelectorAll('button')
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            const playerMessage = document.querySelector('.player-message')
+            playerMessage.textContent = 'You chose: ' + button.id
+            result = playRound(button.id, getComputerChoice())
+            const resultMessage = document.querySelector('.result-message')
+            resultMessage.textContent = result
+            player.textContent = playerScore
+            computer.textContent = computerScore
+            if (playerScore > 4) {
+                endGame('You win!')
+            }
+            else if (computerScore > 4) {
+                endGame('You lose!')
+            }
+        })
+    })
+}
+
+let playerScore = 0
+let computerScore = 0
+game()
+
