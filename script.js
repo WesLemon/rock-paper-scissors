@@ -42,6 +42,8 @@ function endGame(result) {
     button.style.color = 'white'
     button.style.border = '1px solid white'
     button.style.padding = '5px 10px'
+    button.style.fontSize = '25px'
+    button.style.fontWeight = 'bold'
     container.appendChild(button)
     button.addEventListener('click', () => {
         location.reload()

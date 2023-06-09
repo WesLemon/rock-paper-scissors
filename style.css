@@ -33,12 +33,12 @@ h1 {
 .buttons button {
     border: 1px solid white;
     padding: 0px;
-    max-height: 102px;
+    max-height: 202px;
 }
 
 img {
-    max-width: 100px;
-    max-height: 100px;
+    max-width: 200px;
+    max-height: 200px;
 }
 
 .messages {
