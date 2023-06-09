@@ -1,36 +1,23 @@
 function getComputerChoice() {
     let choiceArray = [
-        'Rock',
-        'Paper',
-        'Scissors'
+        'rock',
+        'paper',
+        'scissors'
     ]
     let choice = Math.floor(Math.random() * 3)
+    console.log('Computer chose: ' + choiceArray[choice])
     return choiceArray[choice]
 }
 
-function getPlayerChoice() {
-    let valid = false
-    while (!valid) {
-        choice = prompt('What do you choose? Rock, Paper, or Scissors?')
-        choice = choice.toLowerCase()
-        if (choice == 'rock' || choice == 'scissors' || choice == 'paper') {
-            valid = true
-        }
-    }
-    return choice
-}
-
 function playRound(playerSelection, computerSelection) {
-    player = playerSelection.toLowerCase()
-    computer = computerSelection.toLowerCase()
 
-    if ((player == 'rock' && computer == 'scissors') ||
-        (player == 'scissors' && computer == 'paper') ||
-        (player == 'paper' && computer == 'rock')) {
+    if ((playerSelection == 'rock' && computerSelection == 'scissors') ||
+        (playerSelection == 'scissors' && computerSelection == 'paper') ||
+        (playerSelection == 'paper' && computerSelection == 'rock')) {
         return "You win!"
     }
 
-    else if (player == computer) {
+    else if (playerSelection == computerSelection) {
         return "Draw!"
     }
 
@@ -39,13 +26,10 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game() {
-    for (let i = 0; i < 5; i++) {
-        computerChoice = getComputerChoice()
-        playerChoice = getPlayerChoice()
-        console.log("Computer: " + computerChoice)
-        console.log(playRound(playerChoice, computerChoice))
-    }
-}
-
-game()
+const buttons = document.querySelectorAll('button')
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        console.log('You chose: ' + button.id)
+        console.log(playRound(button.id, getComputerChoice()))
+    })
+})
